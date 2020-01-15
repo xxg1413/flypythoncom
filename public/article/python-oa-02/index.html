@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <head><meta name="generator" content="Hexo 3.9.0">  
+  <!-- Title -->
+  
+  <meta charset="utf-8">
+  <meta name="applicable-device" content="pc,mobile">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, viewport-fit=cover">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="author" content="flypython">
+  <meta name="designer" content="flypython">
+  <meta name="keywords" content="Python写入Word文档,FlyPython - 专业的Python学习社区,flypython, 飞蟒，飞蟒Python，Python入门，Python自动化，Python日报">
+  <meta property="og:title" content="Python写入Word文档 | FlyPython - 专业的Python学习社区">
+  <meta property="og:site_name" content="http://www.flypython.com">
+  
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://www.flypython.com/article/python-oa-02/">
+    <meta property="og:image" content="http://www.flypython.com/images/oa2.jpg">
+    <meta property="og:description" content="Python写入Word文档--极简Python自动化办公系列">
+    <meta name="description" content="Python写入Word文档--极简Python自动化办公系列">
+  
+  <meta name="rating" content="general"> 
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" href="/images/favicon.ico">
+  <title>Python写入Word文档 | FlyPython - 专业的Python学习社区</title>
+  <link rel="stylesheet" href="/css/f25.css">
+  <link rel="stylesheet" href="/css/highlight.css">
+  
+    <link rel="stylesheet" href="/css/gitalk.css">
+  
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-147288599-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-147288599-1');
+</script>
+
+</head>
+</head>
+<body>
+    <header class="wrapper header-wrapper">
+    <div class="container header-nav-wrapper">
+        <div class="logo"><a href="/" title="FlyPython - 专业的Python学习社区"><h1 class="title">FlyPython</h1></a></div>
+        <nav class="nav-wrapper">
+            
+                <a href="https://flypython.com/python" title="飞蟒微课堂">飞蟒微课堂</a>
+            
+                <a href="https://flypython.com/flypython_daily" title="Python日报">Python日报</a>
+            
+                <a href="https://flypython.com/PyCon/" title="PyCon">PyCon</a>
+            
+                <a href="https://github.com/flypythoncom" title="Github">Github</a>
+            
+                <a href="/article/about" title="关于">关于</a>
+            
+        </nav>
+        <span class="btn-menu" id="J_header_menu">
+            <div class="inner">
+                <span class="line line-01"></span>
+                <span class="line line-02"></span>
+                <span class="line line-03"></span>
+            </div>
+        </span>
+        <div class="wrapper mb-nav-wrapper" id="J_header_menu_list">
+            <nav class="wrapper mb-nav-container">
+                
+                    <a href="https://flypython.com/python" title="飞蟒微课堂">飞蟒微课堂</a>
+                
+                    <a href="https://flypython.com/flypython_daily" title="Python日报">Python日报</a>
+                
+                    <a href="https://flypython.com/PyCon/" title="PyCon">PyCon</a>
+                
+                    <a href="https://github.com/flypythoncom" title="Github">Github</a>
+                
+                    <a href="/article/about" title="关于">关于</a>
+                
+            </nav>
+        </div>
+    </div>
+</header>
+    <section class="body-wrapper">
+        <section class="wrapper post-banner">
+    <div class="container post-banner-container">
+        <h2 class="wrapper title">Python写入Word文档</h2>
+        <div class="wrapper tips">
+            <span>Author：</span><span>flypython</span> | <span>Date: </span><span>2019-01-02</span> | <span>Category：</span><span><a href="/fly/自动化办公/" title="自动化办公">自动化办公</a></span>
+        </div>
+    </div>
+</section>
+<section class="wrapper main-wrapper">
+    <article class="sub-container post-content">
+        <blockquote>
+<p>【极简Python 自动化办公】专栏是介绍如何利用python办公，减少工作负荷。篇幅精炼，内容易懂，无论是否有编程基础，都非常适合。</p>
+</blockquote>
+<p>在上次文章中，我们学习了【用python写入excel】，这次我们学习Python写word文档吧！</p>
+<p>场景：<br>有时候，办公室需要按模版生成的固定的文件，模板是固定的，只是每次需要替换信息。如下图的收入证明，模版中所有标黄的都是需要替换的信息：<br><img src="http://jcjview.github.io/img/pythonword_model0.png" alt><br>如果手工来做这个事情，每次至少需要10分钟的时间。假如每天要开15份，则至少要花2个半小时，而且手工编辑word很容易出错。</p>
+<p>可不可用python写个程序，解决这个问题呢？</p>
+<p>结论当然是肯定的！</p>
+<h2 id="0-摘要"><a href="#0-摘要" class="headerlink" title="0.摘要"></a>0.摘要</h2><p><strong>本文大约需要15分钟，建议在电脑上打开，边阅读边操作。</strong></p>
+<ol>
+<li>安装Python读写word模块，python-docx</li>
+<li>准备word模板，准备写入word文档内容</li>
+<li>编写python代码并运行</li>
+<li>通过读取excel表格中的信息，批量生成word文件</li>
+</ol>
+<h2 id="1-安装python-docx模块"><a href="#1-安装python-docx模块" class="headerlink" title="1.安装python-docx模块"></a>1.安装python-docx模块</h2><p>与上篇文章类似，需要在cmd窗口输入<code>pip install python-docx</code>。<br><img src="http://jcjview.github.io/img/flypython_python_docx_pip.png" alt></p>
+<h2 id="2-准备word模板，准备写入word文档内容"><a href="#2-准备word模板，准备写入word文档内容" class="headerlink" title="2.准备word模板，准备写入word文档内容"></a>2.准备word模板，准备写入word文档内容</h2><p>word模板如上所示，（可以不需要标黄），这里注意，需要替换的文字或数字位置，用”XXXX”来固定替代。保存为<code>个人收入证明.docx</code>。</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>姓名</td>
+<td>张三</td>
+</tr>
+<tr>
+<td>身份证号</td>
+<td>104111199009103531</td>
+</tr>
+<tr>
+<td>职务</td>
+<td>工程师</td>
+</tr>
+<tr>
+<td>工作年限</td>
+<td>10</td>
+</tr>
+<tr>
+<td>月收入</td>
+<td>10000</td>
+</tr>
+<tr>
+<td>大写</td>
+<td>壹万元整</td>
+</tr>
+<tr>
+<td>联系人</td>
+<td>李四</td>
+</tr>
+<tr>
+<td>单位名称</td>
+<td>格物致知股份有限公司</td>
+</tr>
+<tr>
+<td>单位地址</td>
+<td>珠海市横琴新区宝华路6号105室-67425</td>
+</tr>
+<tr>
+<td>联系电话</td>
+<td>0756-8627528</td>
+</tr>
+</tbody></table>
+<h2 id="3-编写python代码并运行"><a href="#3-编写python代码并运行" class="headerlink" title="3. 编写python代码并运行"></a>3. 编写python代码并运行</h2><p>在word模板的同级目录，新建一个writeword.py文件，用记事本或其他文本编辑工具打开。</p>
+<p>编程思路：</p>
+<ol>
+<li>用python打开对应doc模板</li>
+<li>按顺序找到每一个需要替换的位置字符”XXXX”，替换为对应的内容</li>
+<li>另存为doc为另一个文件</li>
+</ol>
+<p>在文本编辑工具中输入如下代码，保存并关闭。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">from docx import Document</span><br><span class="line">#准备写入内容</span><br><span class="line">name=&quot;张三&quot;</span><br><span class="line">id_code=&quot;104111199009103531&quot;</span><br><span class="line">career=&quot;工程师&quot;</span><br><span class="line">working_years=&quot;10&quot;</span><br><span class="line">salary=&quot;10000&quot;</span><br><span class="line">salary_uppercase=&quot;壹万元整&quot;</span><br><span class="line">contact=&quot;李四&quot;</span><br><span class="line">company=&quot;格物厚德股份有限公司&quot;</span><br><span class="line">address=&quot;珠海市横琴新区宝华路6号105室-67425&quot;</span><br><span class="line">tel=&quot;0756-8627528&quot;</span><br><span class="line">#打开doc</span><br><span class="line"></span><br><span class="line">textlist=[name,id_code,career,working_years,salary,salary_uppercase,company,address,contact,tel]</span><br><span class="line"></span><br><span class="line">doc = Document(&quot;个人收入证明.docx&quot;)</span><br><span class="line"></span><br><span class="line">count=0</span><br><span class="line"></span><br><span class="line">for p in doc.paragraphs:</span><br><span class="line">        if &apos;XXXX&apos; in p.text:</span><br><span class="line">            inline = p.runs</span><br><span class="line">            for i in range(len(inline)):</span><br><span class="line">                if &apos;XXXX&apos; in inline[i].text:</span><br><span class="line">                    text = inline[i].text.replace(&apos;XXXX&apos;, textlist[count])</span><br><span class="line">                    inline[i].text = text</span><br><span class="line">                    count+=1</span><br><span class="line">                    print(count)</span><br><span class="line">doc.save(&quot;%s_个人收入证明.docx&quot;%name)</span><br></pre></td></tr></table></figure>
+
+<p>在同级目录，打开cmd，运行writeword.py <code>python writeword.py</code></p>
+<p>生成结果如下：<br><code>张三_个人收入证明.docx</code><br><img src="http://jcjview.github.io/img/pythonword2.png" alt></p>
+<h2 id="4-通过读取excel表格中的信息，批量生成word文件"><a href="#4-通过读取excel表格中的信息，批量生成word文件" class="headerlink" title="4.通过读取excel表格中的信息，批量生成word文件"></a>4.通过读取excel表格中的信息，批量生成word文件</h2><p>这里生成了对应word文件，但也有几个问题：</p>
+<ol>
+<li>对应的日期并没有自动填写，应当填写文件生成时对应的日期</li>
+<li>如果是生成大量同样word文档的话，目前的程序也需要一个一个改，并没有提升太多效率</li>
+</ol>
+<p>如果您看过我们之前的2篇用python读写excel的文章，您肯定就会想到，可以利用读取excel表格里的内容，批量生成对应的word文档。对，让我们继续吧！</p>
+<p>这里再准备一个excel文件，将需要批量写入的信息写在excel中，并保存为income.xlsx在同级目录，如下图：</p>
+<p><img src="http://jcjview.github.io/img/pythonword23.png" alt></p>
+<p>修改python 文件writeword.py</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">from docx import Document</span><br><span class="line">#准备写入内容</span><br><span class="line">import xlrd</span><br><span class="line">import time</span><br><span class="line"># 当前时间元组</span><br><span class="line">from datetime import datetime</span><br><span class="line">nt=datetime.now()</span><br><span class="line"># 可以输入中文年月日</span><br><span class="line">datestr=nt.strftime(&apos;%Y&#123;y&#125;%m&#123;m&#125;%d&#123;d&#125;&apos;).format(y=&apos;年&apos;, m=&apos;月&apos;, d=&apos;日&apos;)</span><br><span class="line"></span><br><span class="line">xlsx=xlrd.open_workbook(&apos;income.xlsx&apos;)</span><br><span class="line">sheet=xlsx.sheet_by_index(0)</span><br><span class="line">for row in range(1,sheet.nrows):</span><br><span class="line">    doc = Document(&quot;个人收入证明.docx&quot;)</span><br><span class="line">    count=0</span><br><span class="line">    textlist=[]</span><br><span class="line">    for col in range(0,sheet.ncols):</span><br><span class="line">        textlist.append(str(sheet.cell_value(row, col)))</span><br><span class="line"></span><br><span class="line">    for p in doc.paragraphs:</span><br><span class="line">            if &apos;XXXX&apos; in p.text:</span><br><span class="line">                inline = p.runs</span><br><span class="line">                for i in range(len(inline)):</span><br><span class="line">                    if &apos;XXXX&apos; in inline[i].text:</span><br><span class="line">                        text = inline[i].text.replace(&apos;XXXX&apos;, textlist[count])</span><br><span class="line">                        inline[i].text = text</span><br><span class="line">                        count+=1</span><br><span class="line">            if &apos;X 年   X 月  X 日&apos; in p.text:</span><br><span class="line">                inline = p.runs</span><br><span class="line">                for i in range(len(inline)):</span><br><span class="line">                    if &apos;X 年   X 月  X 日&apos; in inline[i].text:</span><br><span class="line">                        text = inline[i].text.replace(&apos;X 年   X 月  X 日&apos;, datestr)</span><br><span class="line">                        inline[i].text = text</span><br><span class="line"></span><br><span class="line">    doc.save(&quot;%s_个人收入证明.docx&quot;%textlist[0])</span><br></pre></td></tr></table></figure>
+
+
+<p>  运行后，输入结果：</p>
+<p><img src="http://jcjview.github.io/img/pythonword3.png" alt></p>
+<p><img src="http://jcjview.github.io/img/pythonword4.png" alt></p>
+<p><em>人生苦短，我用python早下班。如果觉得不错，对你工作中有帮助，请加我微信公众号flypython，我们一起探讨python相关问题</em></p>
+<p>  <img src="https://flypython.com/images/wechat.png" alt="flypython微信公众号"></p>
+
+    </article>
+    <div class="sub-container gitalk-wrapper" id="gitalk-container"></div>
+</section>
+        
+<div class="tips-top-wrapper">
+    <span class="tip-top-container" onclick="scrollToWindowTop()">
+        <span class="l-bar"></span>
+        <span class="r-bar"></span>
+    </span>
+</div>
+<footer class="wrapper footer-wrapper">
+    <div class="container"><span class="copyright">&copy; 2020 FlyPython . All Rights Reserved.</span></div>
+</footer>
+    </section>
+    <script src="/js/f25.js"></script>
+    
+        <script src="/js/gitalk.min.js"></script>
+        
+<script>
+    var gitalkAdmin = 'xxg1413'.split(',');
+    var gitalk = new Gitalk({
+        clientID: 'd0e566bfc45c0b852c6c',
+        clientSecret: '6b69b3a841c85a6223e5a904c47f5e2d84322980',
+        repo: 'gitalk',
+        owner: 'flypythoncom',
+        admin: gitalkAdmin,
+        id: location.pathname.length > 50 ? location.pathname.substr(0,50) : location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+    gitalk.render('gitalk-container');
+</script>
+
+    
+</body>
+</html>

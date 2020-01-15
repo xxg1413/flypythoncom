@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <head><meta name="generator" content="Hexo 3.9.0">  
+  <!-- Title -->
+  
+  <meta charset="utf-8">
+  <meta name="applicable-device" content="pc,mobile">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, viewport-fit=cover">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="author" content="flypython">
+  <meta name="designer" content="flypython">
+  <meta name="keywords" content="Python批量转换任意文档格式,FlyPython - 专业的Python学习社区,flypython, 飞蟒，飞蟒Python，Python入门，Python自动化，Python日报">
+  <meta property="og:title" content="Python批量转换任意文档格式 | FlyPython - 专业的Python学习社区">
+  <meta property="og:site_name" content="http://www.flypython.com">
+  
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://www.flypython.com/article/python-oa-03/">
+    <meta property="og:image" content="http://www.flypython.com/images/oa3.jpg">
+    <meta property="og:description" content="Python批量转换任意文档格式--极简Python自动化办公系列">
+    <meta name="description" content="Python批量转换任意文档格式--极简Python自动化办公系列">
+  
+  <meta name="rating" content="general"> 
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" href="/images/favicon.ico">
+  <title>Python批量转换任意文档格式 | FlyPython - 专业的Python学习社区</title>
+  <link rel="stylesheet" href="/css/f25.css">
+  <link rel="stylesheet" href="/css/highlight.css">
+  
+    <link rel="stylesheet" href="/css/gitalk.css">
+  
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-147288599-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-147288599-1');
+</script>
+
+</head>
+</head>
+<body>
+    <header class="wrapper header-wrapper">
+    <div class="container header-nav-wrapper">
+        <div class="logo"><a href="/" title="FlyPython - 专业的Python学习社区"><h1 class="title">FlyPython</h1></a></div>
+        <nav class="nav-wrapper">
+            
+                <a href="https://flypython.com/python" title="飞蟒微课堂">飞蟒微课堂</a>
+            
+                <a href="https://flypython.com/flypython_daily" title="Python日报">Python日报</a>
+            
+                <a href="https://flypython.com/PyCon/" title="PyCon">PyCon</a>
+            
+                <a href="https://github.com/flypythoncom" title="Github">Github</a>
+            
+                <a href="/article/about" title="关于">关于</a>
+            
+        </nav>
+        <span class="btn-menu" id="J_header_menu">
+            <div class="inner">
+                <span class="line line-01"></span>
+                <span class="line line-02"></span>
+                <span class="line line-03"></span>
+            </div>
+        </span>
+        <div class="wrapper mb-nav-wrapper" id="J_header_menu_list">
+            <nav class="wrapper mb-nav-container">
+                
+                    <a href="https://flypython.com/python" title="飞蟒微课堂">飞蟒微课堂</a>
+                
+                    <a href="https://flypython.com/flypython_daily" title="Python日报">Python日报</a>
+                
+                    <a href="https://flypython.com/PyCon/" title="PyCon">PyCon</a>
+                
+                    <a href="https://github.com/flypythoncom" title="Github">Github</a>
+                
+                    <a href="/article/about" title="关于">关于</a>
+                
+            </nav>
+        </div>
+    </div>
+</header>
+    <section class="body-wrapper">
+        <section class="wrapper post-banner">
+    <div class="container post-banner-container">
+        <h2 class="wrapper title">Python批量转换任意文档格式</h2>
+        <div class="wrapper tips">
+            <span>Author：</span><span>flypython</span> | <span>Date: </span><span>2019-01-03</span> | <span>Category：</span><span><a href="/fly/自动化办公/" title="自动化办公">自动化办公</a></span>
+        </div>
+    </div>
+</section>
+<section class="wrapper main-wrapper">
+    <article class="sub-container post-content">
+        <p>在工作中，常常会遇到文档格式的转换。如果数据不多，手工转换就可以。如果是大量文档，那我们应该怎么办呢？</p>
+<p>今天我们将使用Python来批量处理文档转换的问题.</p>
+<h4 id="关于unoconv"><a href="#关于unoconv" class="headerlink" title="关于unoconv"></a>关于unoconv</h4><p>unoconv是一款跨平台的工具，用于格式转换，支持命令行。底层实现是依赖于开源的LibreOffice/OpenOffice。</p>
+<p>项目地址：<a href="https://github.com/unoconv/unoconv" target="_blank" rel="noopener">https://github.com/unoconv/unoconv</a></p>
+<p>文档地址： <a href="http://dag.wiee.rs/home-made/unoconv/" target="_blank" rel="noopener">http://dag.wiee.rs/home-made/unoconv/</a></p>
+<p>根据unoconv的文档介绍，支持上百种文档格式的转换，已经覆盖了绝大部分的需求。</p>
+<h4 id="使用unoconv"><a href="#使用unoconv" class="headerlink" title="使用unoconv"></a>使用unoconv</h4><p>安装unoconv比较繁琐，而且需要针对中文进行进一步的字符集配置。我们可以选择别人已经集成好的服务来进行操作，在这里我们选择了docker-unoconv-webservice项目。</p>
+<p>项目地址为： <a href="https://github.com/zrrrzzt/docker-unoconv-webservice" target="_blank" rel="noopener">https://github.com/zrrrzzt/docker-unoconv-webservice</a></p>
+<p>查看项目的README，接口如下: </p>
+<p><code>curl --form file=@myfile.docx http://localhost/unoconv/pdf &gt; myfile.pdf</code></p>
+<p>我们使用下列命令，先把项目的镜像pull下来</p>
+<p><code>docker pull zrrrzzt/docker-unoconv-webservice</code></p>
+<p>然后启动命令如下：</p>
+<p><code>docker run -d -p 80:3000 zrrrzzt/docker-unoconv-webservice</code></p>
+<p>服务在80端口上提供服务，如果80端口被占用，可以调整为其他的端口</p>
+<p>确认服务正在运行：</p>
+<p><code>docker ps | grep zrrrzzt/docker-unoconv-webservice</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[flypython] docker ps | grep zrrrzzt/docker-unoconv-webservice                                         </span><br><span class="line">c014cf335b31        zrrrzzt/docker-unoconv-webservice   &quot;/bin/sh -c &apos;/usr/bi…&quot;   2 minutes ago       Up 2 minutes        0.0.0.0:80-&gt;3000/tcp   brave_blackburn</span><br></pre></td></tr></table></figure>
+
+<p>从docx转换为pdf：</p>
+<p><code>curl --form file=@demo.docx http://localhost/unoconv/pdf &gt; demo.pdf</code> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[flypython] curl --form file=@demo.docx http://localhost/unoconv/pdf &gt; demo.pdf               </span><br><span class="line">  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</span><br><span class="line">                                 Dload  Upload   Total   Spent    Left  Speed</span><br><span class="line">100 12089  100  4242  100  7847   2532   4684  0:00:01  0:00:01 --:--:--  7213</span><br><span class="line">[flypython] ls demo*                                                                                   </span><br><span class="line">demo.docx demo.pdf</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用Python批量请求"><a href="#使用Python批量请求" class="headerlink" title="使用Python批量请求"></a>使用Python批量请求</h4><p>Python批量请求的思路是，把需要转换的文档发送到服务器，服务器会返回转换后的格式，我们保存为文件就可以了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">def post_file(url,path):</span><br><span class="line">    filename = os.path.basename(path)</span><br><span class="line">    convert_name = str(filename).split(&apos;.&apos;)[0] + &apos;.pdf&apos;</span><br><span class="line"></span><br><span class="line">    m = MultipartEncoder(</span><br><span class="line">        fields= &#123;</span><br><span class="line">            &apos;file&apos;:(filename,open(path,&apos;rb&apos;)),</span><br><span class="line">        &#125;</span><br><span class="line">    )</span><br><span class="line">    response = requests.request(&apos;POST&apos;, url, data=m, headers=&#123;&apos;Content-Type&apos;:m.content_type&#125;)</span><br><span class="line"></span><br><span class="line">    with open(convert_name, &apos;wb&apos;) as f:</span><br><span class="line">        f.write(response.content)</span><br><span class="line"></span><br><span class="line">    return convert_name</span><br></pre></td></tr></table></figure>
+
+<p>好了，更多类型转换，更完整的应用需要你根据业务来完善，这次的介绍就到这里了。demo完整代码在github上，点击原文可以获取。</p>
+<p><a href="https://github.com/flypythoncom/flypython/blob/master/convert.py" target="_blank" rel="noopener">https://github.com/flypythoncom/flypython/blob/master/convert.py</a></p>
+
+    </article>
+    <div class="sub-container gitalk-wrapper" id="gitalk-container"></div>
+</section>
+        
+<div class="tips-top-wrapper">
+    <span class="tip-top-container" onclick="scrollToWindowTop()">
+        <span class="l-bar"></span>
+        <span class="r-bar"></span>
+    </span>
+</div>
+<footer class="wrapper footer-wrapper">
+    <div class="container"><span class="copyright">&copy; 2020 FlyPython . All Rights Reserved.</span></div>
+</footer>
+    </section>
+    <script src="/js/f25.js"></script>
+    
+        <script src="/js/gitalk.min.js"></script>
+        
+<script>
+    var gitalkAdmin = 'xxg1413'.split(',');
+    var gitalk = new Gitalk({
+        clientID: 'd0e566bfc45c0b852c6c',
+        clientSecret: '6b69b3a841c85a6223e5a904c47f5e2d84322980',
+        repo: 'gitalk',
+        owner: 'flypythoncom',
+        admin: gitalkAdmin,
+        id: location.pathname.length > 50 ? location.pathname.substr(0,50) : location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+    gitalk.render('gitalk-container');
+</script>
+
+    
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <head><meta name="generator" content="Hexo 3.9.0">  
+  <!-- Title -->
+  
+  <meta charset="utf-8">
+  <meta name="applicable-device" content="pc,mobile">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, viewport-fit=cover">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="author" content="flypython">
+  <meta name="designer" content="flypython">
+  <meta name="keywords" content="Python正则15分钟入门,FlyPython - 专业的Python学习社区,flypython, 飞蟒，飞蟒Python，Python入门，Python自动化，Python日报">
+  <meta property="og:title" content="Python正则15分钟入门 | FlyPython - 专业的Python学习社区">
+  <meta property="og:site_name" content="http://www.flypython.com">
+  
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://www.flypython.com/article/python-tutorial-03/">
+    <meta property="og:image" content="http://www.flypython.com/images/tutorial3.png">
+    <meta property="og:description" content="Python正则15分钟入门--Python入门教程">
+    <meta name="description" content="Python正则15分钟入门--Python入门教程">
+  
+  <meta name="rating" content="general"> 
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" href="/images/favicon.ico">
+  <title>Python正则15分钟入门 | FlyPython - 专业的Python学习社区</title>
+  <link rel="stylesheet" href="/css/f25.css">
+  <link rel="stylesheet" href="/css/highlight.css">
+  
+    <link rel="stylesheet" href="/css/gitalk.css">
+  
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-147288599-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-147288599-1');
+</script>
+
+</head>
+</head>
+<body>
+    <header class="wrapper header-wrapper">
+    <div class="container header-nav-wrapper">
+        <div class="logo"><a href="/" title="FlyPython - 专业的Python学习社区"><h1 class="title">FlyPython</h1></a></div>
+        <nav class="nav-wrapper">
+            
+                <a href="https://flypython.com/python" title="飞蟒微课堂">飞蟒微课堂</a>
+            
+                <a href="https://flypython.com/flypython_daily" title="Python日报">Python日报</a>
+            
+                <a href="https://flypython.com/PyCon/" title="PyCon">PyCon</a>
+            
+                <a href="https://github.com/flypythoncom" title="Github">Github</a>
+            
+                <a href="/article/about" title="关于">关于</a>
+            
+        </nav>
+        <span class="btn-menu" id="J_header_menu">
+            <div class="inner">
+                <span class="line line-01"></span>
+                <span class="line line-02"></span>
+                <span class="line line-03"></span>
+            </div>
+        </span>
+        <div class="wrapper mb-nav-wrapper" id="J_header_menu_list">
+            <nav class="wrapper mb-nav-container">
+                
+                    <a href="https://flypython.com/python" title="飞蟒微课堂">飞蟒微课堂</a>
+                
+                    <a href="https://flypython.com/flypython_daily" title="Python日报">Python日报</a>
+                
+                    <a href="https://flypython.com/PyCon/" title="PyCon">PyCon</a>
+                
+                    <a href="https://github.com/flypythoncom" title="Github">Github</a>
+                
+                    <a href="/article/about" title="关于">关于</a>
+                
+            </nav>
+        </div>
+    </div>
+</header>
+    <section class="body-wrapper">
+        <section class="wrapper post-banner">
+    <div class="container post-banner-container">
+        <h2 class="wrapper title">Python正则15分钟入门</h2>
+        <div class="wrapper tips">
+            <span>Author：</span><span>flypython</span> | <span>Date: </span><span>2019-02-03</span> | <span>Category：</span><span><a href="/fly/Python入门/" title="Python入门">Python入门</a></span>
+        </div>
+    </div>
+</section>
+<section class="wrapper main-wrapper">
+    <article class="sub-container post-content">
+        <p>flypython群里有同学问我，如何从大量格式不确定的word文档抽取姓名、电话号码、邮箱等信息存入excel表格。通过之前我们的文章，他已经学会读取和写入文档和表格，但就是无法处理格式不确定的文档。<strong>这里介绍的正则方法，可以帮助他解决这个问题。</strong></p>
+<h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>15分钟内让你真正明白正则表达式是什么，并且让你可以在自己的python程序里正确使用它。</p>
+<p>你将学会：</p>
+<ol>
+<li>极简python使用正则的方法</li>
+<li>如果利用python高效的匹配字符串</li>
+<li>如何利用python正则进行文本判断、过滤、信息提取</li>
+</ol>
+<h2 id="0-极简正则入门"><a href="#0-极简正则入门" class="headerlink" title="0.极简正则入门"></a>0.极简正则入门</h2><p>假设程序从word或者excel读取了一串字符串，字符串中有一部分是电话号码，现在需要完整提取这个电话号码。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line">reg=re.compile(<span class="string">"[0-9]+"</span>)</span><br><span class="line">a=reg.findall(<span class="string">"我的电话是3555487"</span>)</span><br><span class="line">print(a)</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<p><img src="https://raw.githubusercontent.com/jcjview/jcjview.github.io/master/img/20191016101032.png" alt></p>
+<p>解释：<br><code>&quot;[0-9]+&quot;</code>是正则表达式，意思是匹配0-9的数字，<code>&quot;+&quot;</code><br>表示可以匹配1次-多次，<code>reg.findall</code>表示从后面的字符串里找到所有的匹配值。</p>
+<h2 id="1-字符集"><a href="#1-字符集" class="headerlink" title="1.字符集"></a>1.字符集</h2><p>字符集，又叫元字符，就是用一些特殊符号表示特定种类的字符或位置。</p>
+<h4 id="匹配字符"><a href="#匹配字符" class="headerlink" title="匹配字符"></a>匹配字符</h4><table>
+<thead>
+<tr>
+<th align="center">代码</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>.</code></td>
+<td>匹配除换行符以外的任意一个字符</td>
+</tr>
+<tr>
+<td align="center"><code>\d</code></td>
+<td>匹配数字</td>
+</tr>
+<tr>
+<td align="center"><code>\w</code></td>
+<td>匹配字母或数字或下划线或汉字</td>
+</tr>
+<tr>
+<td align="center"><code>\s</code></td>
+<td>匹配任意的空白符</td>
+</tr>
+<tr>
+<td align="center"><code>^</code></td>
+<td>匹配字符串的开始</td>
+</tr>
+<tr>
+<td align="center"><code>$</code></td>
+<td>匹配字符串的结束</td>
+</tr>
+</tbody></table>
+<p>举例</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line">reg=re.compile(<span class="string">"我."</span>)</span><br><span class="line">a=reg.findall(<span class="string">"我的电话是3555487"</span>)</span><br><span class="line">print(a)</span><br></pre></td></tr></table></figure>
+
+<p>输出：<br><img src="http://jcjview.github.io/img/re201910161010321.png" alt></p>
+<h4 id="重复匹配"><a href="#重复匹配" class="headerlink" title="重复匹配"></a>重复匹配</h4><table>
+<thead>
+<tr>
+<th align="center">代码</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>*</code></td>
+<td>重复0次-无数次</td>
+</tr>
+<tr>
+<td align="center"><code>+</code></td>
+<td>重复1次-无数次</td>
+</tr>
+<tr>
+<td align="center"><code>?</code></td>
+<td>重复0次-1次</td>
+</tr>
+<tr>
+<td align="center"><code>{m}</code></td>
+<td>重复m次</td>
+</tr>
+<tr>
+<td align="center"><code>{m,n}</code></td>
+<td>重复m-n次</td>
+</tr>
+</tbody></table>
+<p>举例</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line">reg=re.compile(<span class="string">"5+"</span>)</span><br><span class="line">a=reg.findall(<span class="string">"我的电话是3555487"</span>)</span><br><span class="line">print(a)</span><br></pre></td></tr></table></figure>
+
+<p>输出：<br><img src="https://raw.githubusercontent.com/jcjview/jcjview.github.io/master/img/re_20191016101824.png" alt></p>
+<h4 id="贪婪与懒惰"><a href="#贪婪与懒惰" class="headerlink" title="贪婪与懒惰"></a>贪婪与懒惰</h4><p>贪婪：匹配尽可能长的字符串<br>懒惰：匹配尽可能短的字符串<br>懒惰模式的启用只需在重复元字符之后加?既可。</p>
+<ul>
+<li><code>*?</code> 重复任意次，但尽可能少重复</li>
+<li><code>+?</code> 重复1次或更多次，但尽可能少重复</li>
+<li><code>??</code> 重复0次或1次，但尽可能少重复</li>
+<li><code>{n,m}?</code> 重复n到m次，但尽可能少重复</li>
+<li><code>{n,}?</code> 重复n次以上，但尽可能少重复</li>
+</ul>
+<p>举例</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line">reg=re.compile(<span class="string">"5+?"</span>)</span><br><span class="line">a=reg.findall(<span class="string">"我的电话是3555487"</span>)</span><br><span class="line">print(a)</span><br></pre></td></tr></table></figure>
+
+<p>输出<br><img src="https://raw.githubusercontent.com/jcjview/jcjview.github.io/master/img//re_20191016101824111.png" alt></p>
+<p>注意：<br>如果想匹配元字符本身或者正则中的一些特殊字符，使用<code>\\</code>转义。</p>
+<p>这里介绍的正则内容是最基础的，想要了解更详细的正则表达式语法，请参考：</p>
+<h2 id="2-利用正则判断"><a href="#2-利用正则判断" class="headerlink" title="2.利用正则判断"></a>2.利用正则判断</h2><h4 id="判断"><a href="#判断" class="headerlink" title="判断"></a>判断</h4><p>有时候我们想利用正则表达式对用户输入进行判断，比如判断用户输入的身份证号是否符合规则，那么可以这样写：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line">r=<span class="string">r'^([1-9]\d&#123;5&#125;[12]\d&#123;3&#125;(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])\d&#123;3&#125;[0-9xX])$'</span></span><br><span class="line"></span><br><span class="line">s1 = <span class="string">'110102200101014779'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#判断s1字符串是符合正则r</span></span><br><span class="line">an = re.search(r, s1)</span><br><span class="line"><span class="keyword">if</span> an:</span><br><span class="line">    <span class="keyword">print</span> (<span class="string">'yes'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">print</span> (<span class="string">'no'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>输入结果<br><img src="https://raw.githubusercontent.com/jcjview/jcjview.github.io/master/img/re_20191016104208.png" alt></p>
+<p>说明：<code>^</code>字符表示必须匹配字符串开头；<code>$</code>表示必须匹配字符串结尾。</p>
+<h4 id="过滤"><a href="#过滤" class="headerlink" title="过滤"></a>过滤</h4><p>假设，输出一串文本，只想保留汉字，去除特殊符号。代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line">special_character_removal = re.compile(<span class="string">r'[，。、【 】“”：；（）《》‘’&#123;&#125;？！⑦%&gt;℃.^-——=&amp;#@￥『』]'</span>, re.IGNORECASE)</span><br><span class="line">line=<span class="string">"贾蓉看了说：“高明的很。还要请教先生，这病与『性』命终久有妨无妨？”"</span></span><br><span class="line">l = special_character_removal.sub(<span class="string">''</span>, line)</span><br><span class="line">print(l)</span><br></pre></td></tr></table></figure>
+
+<p>输入结果：<br><img src="https://raw.githubusercontent.com/jcjview/jcjview.github.io/master/img/re_20191016104753.png" alt></p>
+<h4 id="查找位置"><a href="#查找位置" class="headerlink" title="查找位置"></a>查找位置</h4><p>查找某个文本在字符串中的位置，一般用于信息提取。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line">p = re.compile(<span class="string">"\d+"</span>)</span><br><span class="line">content=<span class="string">"2019年9月9月9日"</span></span><br><span class="line">result2 = p.finditer(content)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> m <span class="keyword">in</span> result2:</span><br><span class="line">    print(<span class="string">"str"</span>,m.group())  <span class="comment">##字符串</span></span><br><span class="line">    print(<span class="string">"start: "</span>,m.start(),<span class="string">" end: "</span>,m.end())  <span class="comment">##字符串位置</span></span><br></pre></td></tr></table></figure>
+
+<p>输出结果</p>
+<p><img src="https://raw.githubusercontent.com/jcjview/jcjview.github.io/master/img/re_20191016110227.png" alt></p>
+<p><em>人生苦短，我用python早下班。如果觉得不错，对你工作中有帮助，请长按下面二维码关注我们。（回复训练营加群，一起探讨python问题）</em></p>
+<p>  <img src="https://flypython.com/images/wechat.png" alt="flypython微信公众号"></p>
+
+    </article>
+    <div class="sub-container gitalk-wrapper" id="gitalk-container"></div>
+</section>
+        
+<div class="tips-top-wrapper">
+    <span class="tip-top-container" onclick="scrollToWindowTop()">
+        <span class="l-bar"></span>
+        <span class="r-bar"></span>
+    </span>
+</div>
+<footer class="wrapper footer-wrapper">
+    <div class="container"><span class="copyright">&copy; 2020 FlyPython . All Rights Reserved.</span></div>
+</footer>
+    </section>
+    <script src="/js/f25.js"></script>
+    
+        <script src="/js/gitalk.min.js"></script>
+        
+<script>
+    var gitalkAdmin = 'xxg1413'.split(',');
+    var gitalk = new Gitalk({
+        clientID: 'd0e566bfc45c0b852c6c',
+        clientSecret: '6b69b3a841c85a6223e5a904c47f5e2d84322980',
+        repo: 'gitalk',
+        owner: 'flypythoncom',
+        admin: gitalkAdmin,
+        id: location.pathname.length > 50 ? location.pathname.substr(0,50) : location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+    gitalk.render('gitalk-container');
+</script>
+
+    
+</body>
+</html>

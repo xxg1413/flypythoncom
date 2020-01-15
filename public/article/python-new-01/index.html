@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <head><meta name="generator" content="Hexo 3.9.0">  
+  <!-- Title -->
+  
+  <meta charset="utf-8">
+  <meta name="applicable-device" content="pc,mobile">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, viewport-fit=cover">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="author" content="flypython">
+  <meta name="designer" content="flypython">
+  <meta name="keywords" content="Python 3.8新特性——赋值表达式,FlyPython - 专业的Python学习社区,flypython, 飞蟒，飞蟒Python，Python入门，Python自动化，Python日报">
+  <meta property="og:title" content="Python 3.8新特性——赋值表达式 | FlyPython - 专业的Python学习社区">
+  <meta property="og:site_name" content="http://www.flypython.com">
+  
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://www.flypython.com/article/python-new-01/">
+    <meta property="og:image" content="http://www.flypython.com/images/new-01.png">
+    <meta property="og:description" content="Python 3.8新特性——赋值表达式--介绍Python语言新的特性">
+    <meta name="description" content="Python 3.8新特性——赋值表达式--介绍Python语言新的特性">
+  
+  <meta name="rating" content="general"> 
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" href="/images/favicon.ico">
+  <title>Python 3.8新特性——赋值表达式 | FlyPython - 专业的Python学习社区</title>
+  <link rel="stylesheet" href="/css/f25.css">
+  <link rel="stylesheet" href="/css/highlight.css">
+  
+    <link rel="stylesheet" href="/css/gitalk.css">
+  
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-147288599-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-147288599-1');
+</script>
+
+</head>
+</head>
+<body>
+    <header class="wrapper header-wrapper">
+    <div class="container header-nav-wrapper">
+        <div class="logo"><a href="/" title="FlyPython - 专业的Python学习社区"><h1 class="title">FlyPython</h1></a></div>
+        <nav class="nav-wrapper">
+            
+                <a href="https://flypython.com/python" title="飞蟒微课堂">飞蟒微课堂</a>
+            
+                <a href="https://flypython.com/flypython_daily" title="Python日报">Python日报</a>
+            
+                <a href="https://flypython.com/PyCon/" title="PyCon">PyCon</a>
+            
+                <a href="https://github.com/flypythoncom" title="Github">Github</a>
+            
+                <a href="/article/about" title="关于">关于</a>
+            
+        </nav>
+        <span class="btn-menu" id="J_header_menu">
+            <div class="inner">
+                <span class="line line-01"></span>
+                <span class="line line-02"></span>
+                <span class="line line-03"></span>
+            </div>
+        </span>
+        <div class="wrapper mb-nav-wrapper" id="J_header_menu_list">
+            <nav class="wrapper mb-nav-container">
+                
+                    <a href="https://flypython.com/python" title="飞蟒微课堂">飞蟒微课堂</a>
+                
+                    <a href="https://flypython.com/flypython_daily" title="Python日报">Python日报</a>
+                
+                    <a href="https://flypython.com/PyCon/" title="PyCon">PyCon</a>
+                
+                    <a href="https://github.com/flypythoncom" title="Github">Github</a>
+                
+                    <a href="/article/about" title="关于">关于</a>
+                
+            </nav>
+        </div>
+    </div>
+</header>
+    <section class="body-wrapper">
+        <section class="wrapper post-banner">
+    <div class="container post-banner-container">
+        <h2 class="wrapper title">Python 3.8新特性——赋值表达式</h2>
+        <div class="wrapper tips">
+            <span>Author：</span><span>flypython</span> | <span>Date: </span><span>2019-04-01</span> | <span>Category：</span><span><a href="/fly/Python新特性/" title="Python新特性">Python新特性</a></span>
+        </div>
+    </div>
+</section>
+<section class="wrapper main-wrapper">
+    <article class="sub-container post-content">
+        <p>上周，Python3.8版本发布，到底带来了哪些新的特性呢？我们应该在哪些场景中使用这些特性呢？本周，我们通过几篇文章来告诉你答案。</p>
+<p><img src="https://tva1.sinaimg.cn/large/006tNbRwly1gai72bypmej30u00u9wl1.jpg" alt></p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>首先，我们并不推荐安装最新版本到常用的开发环境中，你可以使用虚拟环境或者docker来尝鲜。</p>
+<p>官方安装包</p>
+<p>网址：<code>https://www.python.org/downloads/release/python-380/</code></p>
+<p>也可以使用docker</p>
+<p>拉取镜像命令<br><code>docker pull  python:3.8</code></p>
+<h2 id="赋值表达式"><a href="#赋值表达式" class="headerlink" title="赋值表达式"></a>赋值表达式</h2><p><img src="https://tva1.sinaimg.cn/large/006tNbRwly1gai72nu5otj30jg0atdfq.jpg" alt></p>
+<p>赋值表达式被叫做海象运算符，因为它的形状像海象。如果熟悉go语言的话，会对这个表达式会熟悉。</p>
+<p>赋值表达式的语法是 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name := expression</span><br></pre></td></tr></table></figure>
+
+<p>和赋值语句 <code>=</code> 作用差不多，非必不可少，但可以简化代码。</p>
+<h4 id="官方示例"><a href="#官方示例" class="headerlink" title="官方示例"></a>官方示例</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; a = False</span><br><span class="line">&gt;&gt;&gt; print(a)</span><br><span class="line">False</span><br><span class="line">&gt;&gt;&gt; print(a := True)</span><br><span class="line">True</span><br></pre></td></tr></table></figure>
+
+<p>此例子赋值之后，后续还需要使用变量。赋值表达可用于简化代码，提高可读性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; inputs = list()</span><br><span class="line">&gt;&gt;&gt; while True:</span><br><span class="line">...   current = input(&quot;your input:&quot;)</span><br><span class="line">...   if current == &quot;quit&quot;:</span><br><span class="line">...       break</span><br><span class="line">...   inputs.append(current)</span><br><span class="line">...</span><br><span class="line">your input:a</span><br><span class="line">your input:b</span><br><span class="line">your input:test</span><br><span class="line">your input:quit</span><br><span class="line">&gt;&gt;&gt; inputs</span><br><span class="line">[&apos;a&apos;, &apos;b&apos;, &apos;test&apos;]</span><br></pre></td></tr></table></figure>
+
+<p>使用赋值操作符时：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; inputs = list()</span><br><span class="line">&gt;&gt;&gt; while (current := input(&quot;your input:&quot;)) != &quot;quit&quot;:</span><br><span class="line">...   inputs.append(current)</span><br><span class="line">...</span><br><span class="line">your input:a</span><br><span class="line">your input:b</span><br><span class="line">your input:test</span><br><span class="line">your input:quit</span><br><span class="line">&gt;&gt;&gt; inputs</span><br><span class="line">[&apos;a&apos;, &apos;b&apos;, &apos;test&apos;]</span><br></pre></td></tr></table></figure>
+
+<p>此例子，省略了一条语句，可读性上升。</p>
+<p>再来一个例子</p>
+<p>最初版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = [1,2,3,4]</span><br><span class="line">if len(a) &gt; 3:  #计算 len(a) 一次 </span><br><span class="line">   print(f&quot;a is too long (&#123;len(a)&#125; elements,expected &lt; 3)&quot;)  # 计算 len(a) 第二次</span><br></pre></td></tr></table></figure>
+
+<p>我们改写为:</p>
+<p>改进版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = [1,2,3,4]</span><br><span class="line">n = len(a) # 计算一次len(a)</span><br><span class="line">if n &gt; 3:  # 多了变量n</span><br><span class="line">   print(f&quot;a is too long (&#123;n&#125; elements,expected &lt; 3)&quot;)  #</span><br></pre></td></tr></table></figure>
+
+<p>新特性重写:<br>重写版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = [1,2,3,4]</span><br><span class="line">if (n:=len(a)) &gt; 3:  # 计算一次len(a)，多了变量n，把两行改为一行</span><br><span class="line">   print(f&quot;a is too long (&#123;n&#125; elements,expected &lt; 3)&quot;)  #</span><br></pre></td></tr></table></figure>
+
+<p>从上面可以看到，重写版本和改进版本的不同在于：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">n = len(a) </span><br><span class="line">if n &gt; 3:</span><br><span class="line">   pass</span><br></pre></td></tr></table></figure>
+
+
+<p>与</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">if (n:=len(a)) &gt; 3:</span><br><span class="line">   pass</span><br></pre></td></tr></table></figure>
+
+<p>这两个版本的区别在于，<code>:=</code>和<code>=</code>是补充关系并不是替换关系，下面的例子可以看到官方的意图。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">x = 5</span><br><span class="line">print(f&quot;x = &#123;x&#125;&quot;)</span><br><span class="line"></span><br><span class="line">#能用=解决的就用=解决</span><br><span class="line">y := 5 # SyntaxError: invalid syntax</span><br><span class="line">print(f&quot;y = &#123;y&#125;&quot;)</span><br><span class="line"></span><br><span class="line">(z := 5)</span><br><span class="line">print(f&quot;z = &#123;z&#125;&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>由上面可以看出<code>:=</code>和<code>=</code>是互补关系，在应该使用<code>:=</code>的时候才可以使用<code>:=</code>。</p>
+<p>Python语言的一致性，不管是专家还是新手，在同一个问题上都应该有一致的写法，然后这就形成了最pythonic的写法。</p>
+<p>最后带来，新特性带来的最佳实践</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 简化 os.fork </span><br><span class="line">if pid := os.fork():</span><br><span class="line">    # Parent code</span><br><span class="line">else:</span><br><span class="line">    # Child code</span><br><span class="line"></span><br><span class="line"># 直接到把 socket 对象的 read buffer 读完为止</span><br><span class="line">while data := sock.recv(8192):</span><br><span class="line">    print(&quot;Received data:&quot;, data)</span><br></pre></td></tr></table></figure>
+
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><ul>
+<li><a href="https://docs.python.org/zh-cn/3.8/whatsnew/3.8.html" target="_blank" rel="noopener">https://docs.python.org/zh-cn/3.8/whatsnew/3.8.html</a></li>
+<li><a href="https://www.python.org/dev/peps/pep-0572" target="_blank" rel="noopener">https://www.python.org/dev/peps/pep-0572</a></li>
+</ul>
+
+    </article>
+    <div class="sub-container gitalk-wrapper" id="gitalk-container"></div>
+</section>
+        
+<div class="tips-top-wrapper">
+    <span class="tip-top-container" onclick="scrollToWindowTop()">
+        <span class="l-bar"></span>
+        <span class="r-bar"></span>
+    </span>
+</div>
+<footer class="wrapper footer-wrapper">
+    <div class="container"><span class="copyright">&copy; 2020 FlyPython . All Rights Reserved.</span></div>
+</footer>
+    </section>
+    <script src="/js/f25.js"></script>
+    
+        <script src="/js/gitalk.min.js"></script>
+        
+<script>
+    var gitalkAdmin = 'xxg1413'.split(',');
+    var gitalk = new Gitalk({
+        clientID: 'd0e566bfc45c0b852c6c',
+        clientSecret: '6b69b3a841c85a6223e5a904c47f5e2d84322980',
+        repo: 'gitalk',
+        owner: 'flypythoncom',
+        admin: gitalkAdmin,
+        id: location.pathname.length > 50 ? location.pathname.substr(0,50) : location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+    gitalk.render('gitalk-container');
+</script>
+
+    
+</body>
+</html>

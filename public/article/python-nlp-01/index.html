@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <head><meta name="generator" content="Hexo 3.9.0">  
+  <!-- Title -->
+  
+  <meta charset="utf-8">
+  <meta name="applicable-device" content="pc,mobile">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, viewport-fit=cover">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="author" content="flypython">
+  <meta name="designer" content="flypython">
+  <meta name="keywords" content="使用 Python 生成《红楼梦》词云,FlyPython - 专业的Python学习社区,flypython, 飞蟒，飞蟒Python，Python入门，Python自动化，Python日报">
+  <meta property="og:title" content="使用 Python 生成《红楼梦》词云 | FlyPython - 专业的Python学习社区">
+  <meta property="og:site_name" content="http://www.flypython.com">
+  
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://www.flypython.com/article/python-nlp-01/">
+    <meta property="og:image" content="http://www.flypython.com/images/nlp1.png">
+    <meta property="og:description" content="使用 Python 生成《红楼梦》词云--Python自然语言处理教程">
+    <meta name="description" content="使用 Python 生成《红楼梦》词云--Python自然语言处理教程">
+  
+  <meta name="rating" content="general"> 
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" href="/images/favicon.ico">
+  <title>使用 Python 生成《红楼梦》词云 | FlyPython - 专业的Python学习社区</title>
+  <link rel="stylesheet" href="/css/f25.css">
+  <link rel="stylesheet" href="/css/highlight.css">
+  
+    <link rel="stylesheet" href="/css/gitalk.css">
+  
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-147288599-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-147288599-1');
+</script>
+
+</head>
+</head>
+<body>
+    <header class="wrapper header-wrapper">
+    <div class="container header-nav-wrapper">
+        <div class="logo"><a href="/" title="FlyPython - 专业的Python学习社区"><h1 class="title">FlyPython</h1></a></div>
+        <nav class="nav-wrapper">
+            
+                <a href="https://flypython.com/python" title="飞蟒微课堂">飞蟒微课堂</a>
+            
+                <a href="https://flypython.com/flypython_daily" title="Python日报">Python日报</a>
+            
+                <a href="https://flypython.com/PyCon/" title="PyCon">PyCon</a>
+            
+                <a href="https://github.com/flypythoncom" title="Github">Github</a>
+            
+                <a href="/article/about" title="关于">关于</a>
+            
+        </nav>
+        <span class="btn-menu" id="J_header_menu">
+            <div class="inner">
+                <span class="line line-01"></span>
+                <span class="line line-02"></span>
+                <span class="line line-03"></span>
+            </div>
+        </span>
+        <div class="wrapper mb-nav-wrapper" id="J_header_menu_list">
+            <nav class="wrapper mb-nav-container">
+                
+                    <a href="https://flypython.com/python" title="飞蟒微课堂">飞蟒微课堂</a>
+                
+                    <a href="https://flypython.com/flypython_daily" title="Python日报">Python日报</a>
+                
+                    <a href="https://flypython.com/PyCon/" title="PyCon">PyCon</a>
+                
+                    <a href="https://github.com/flypythoncom" title="Github">Github</a>
+                
+                    <a href="/article/about" title="关于">关于</a>
+                
+            </nav>
+        </div>
+    </div>
+</header>
+    <section class="body-wrapper">
+        <section class="wrapper post-banner">
+    <div class="container post-banner-container">
+        <h2 class="wrapper title">使用 Python 生成《红楼梦》词云</h2>
+        <div class="wrapper tips">
+            <span>Author：</span><span>flypython</span> | <span>Date: </span><span>2019-03-01</span> | <span>Category：</span><span><a href="/fly/自然语言处理/" title="自然语言处理">自然语言处理</a></span>
+        </div>
+    </div>
+</section>
+<section class="wrapper main-wrapper">
+    <article class="sub-container post-content">
+        <p>使用 Python 生成《红楼梦》词云</p>
+<p><img src="http://jcjview.github.io/img/1210058744_15500375990201n.jpg" alt></p>
+<p>本文介绍如何使用python绘制《红楼梦》的词云。</p>
+<blockquote>
+<p>“词云”就是对网络文本中出现频率较高的“关键词”予以视觉上的突出，形成“关键词云层”或“关键词渲染”，从而过滤掉大量的文本信息，使浏览网页者只要一眼扫过文本就可以领略文本的主旨。<br><a href="http://media.people.com.cn/GB/22100/61748/61749/4281906.html" target="_blank" rel="noopener">“词云”——网络内容发布新招式  ．人民网</a></p>
+</blockquote>
+<h2 id="0-摘要"><a href="#0-摘要" class="headerlink" title="0.摘要"></a>0.摘要</h2><p><strong>本文建议在电脑上打开，边阅读边操作。</strong></p>
+<ol>
+<li>安装python词云工具wordcloud，画图软件matplotlib</li>
+<li>准备红楼梦文本</li>
+<li>编写python代码并运行</li>
+<li>展示词云结果</li>
+</ol>
+<h2 id="1-安装wordcloud"><a href="#1-安装wordcloud" class="headerlink" title="1.安装wordcloud"></a>1.安装wordcloud</h2><p>可以在cmd窗口输入<figure class="highlight plain"><figcaption><span>install wordcloud  matplotlib```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">![](http://jcjview.github.io/img/wordcloud001.png)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 2.准备红楼梦文本</span><br><span class="line"></span><br><span class="line">文本可以用下面链接下载</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">`https://github.com/flypythoncom/flypython/blob/master/wordcloud_hlm_seg.txt`</span><br><span class="line"></span><br><span class="line">或者可以自己写代码，对文本进行清洗，分词。</span><br><span class="line">这里需要安装jieba分词，`pip install jieba`</span><br><span class="line">``` python</span><br><span class="line">import jieba</span><br><span class="line">import re</span><br><span class="line"></span><br><span class="line">special_character_removal = re.compile(r&apos;[，。、【 】“”：；（）《》‘’&#123;&#125;？！⑦%&gt;℃.^-——=&amp;#@￥『』]&apos;, re.IGNORECASE)</span><br><span class="line"></span><br><span class="line">fw=open(&quot;hlm_seg.txt&quot;,&quot;w&quot;,encoding=&quot;utf-8&quot;)</span><br><span class="line"></span><br><span class="line">with open(&apos;hlm.txt&apos;,encoding=&quot;utf-8&quot;) as fp:</span><br><span class="line">    for line in fp:</span><br><span class="line">        l = special_character_removal.sub(&apos;&apos;, line.strip())</span><br><span class="line">        words=jieba.cut(l)</span><br><span class="line">        t=&quot; &quot;.join(words)</span><br><span class="line">        fw.write(t)</span><br><span class="line">        fw.write(&quot;\n&quot;)</span><br><span class="line"> </span><br><span class="line">fw.close()</span><br></pre></td></tr></table></figure></p>
+<h2 id="3-编写词云python代码并运行"><a href="#3-编写词云python代码并运行" class="headerlink" title="3. 编写词云python代码并运行"></a>3. 编写词云python代码并运行</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> os <span class="keyword">import</span> path  </span><br><span class="line"><span class="keyword">from</span> wordcloud <span class="keyword">import</span> WordCloud</span><br><span class="line"></span><br><span class="line">d = path.dirname(__file__)  </span><br><span class="line"><span class="comment"># Read the whole text.  </span></span><br><span class="line">text = open(path.join(d, <span class="string">'hlm_seg.txt'</span>),encoding=<span class="string">"utf-8"</span>).read()  </span><br><span class="line"><span class="comment"># Generate a word cloud image  </span></span><br><span class="line"><span class="comment"># font=path.join(d, "simkai.ttf")  </span></span><br><span class="line">font=<span class="string">'C:/Windows/Fonts/simkai.ttf'</span>  </span><br><span class="line">wordcloud = WordCloud(font_path=font,<span class="comment">#设置中文字体，不指定就会出现中文不显示  </span></span><br><span class="line">  width=<span class="number">1024</span>,<span class="comment">#宽  </span></span><br><span class="line">  height=<span class="number">840</span>,<span class="comment">#高  </span></span><br><span class="line">  background_color=<span class="string">'white'</span>,<span class="comment">#设置背景色   </span></span><br><span class="line">  <span class="comment"># max_words=100,#最大词汇数  </span></span><br><span class="line">  <span class="comment"># max_font_size=100#最大号字体  </span></span><br><span class="line">  ).generate(text)  </span><br><span class="line">  </span><br><span class="line"><span class="comment"># Display the generated image:  </span></span><br><span class="line"><span class="comment"># the matplotlib way:  </span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt  </span><br><span class="line">  </span><br><span class="line">plt.figure()  </span><br><span class="line">plt.imshow(wordcloud)  </span><br><span class="line">plt.axis(<span class="string">"off"</span>)  </span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<p><img src="http://jcjview.github.io/img/Figure_1.png" alt="词云运行结果"></p>
+<p>后台回复“词云”获得完整运行代码</p>
+<p><em>人生苦短，我用python早下班。如果觉得不错，对你工作中有帮助，请加我微信公众号flypython，我们一起探讨python相关问题</em></p>
+<p>  <img src="https://flypython.com/images/wechat.png" alt="flypython微信公众号"></p>
+
+    </article>
+    <div class="sub-container gitalk-wrapper" id="gitalk-container"></div>
+</section>
+        
+<div class="tips-top-wrapper">
+    <span class="tip-top-container" onclick="scrollToWindowTop()">
+        <span class="l-bar"></span>
+        <span class="r-bar"></span>
+    </span>
+</div>
+<footer class="wrapper footer-wrapper">
+    <div class="container"><span class="copyright">&copy; 2020 FlyPython . All Rights Reserved.</span></div>
+</footer>
+    </section>
+    <script src="/js/f25.js"></script>
+    
+        <script src="/js/gitalk.min.js"></script>
+        
+<script>
+    var gitalkAdmin = 'xxg1413'.split(',');
+    var gitalk = new Gitalk({
+        clientID: 'd0e566bfc45c0b852c6c',
+        clientSecret: '6b69b3a841c85a6223e5a904c47f5e2d84322980',
+        repo: 'gitalk',
+        owner: 'flypythoncom',
+        admin: gitalkAdmin,
+        id: location.pathname.length > 50 ? location.pathname.substr(0,50) : location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+    gitalk.render('gitalk-container');
+</script>
+
+    
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <head><meta name="generator" content="Hexo 3.9.0">  
+  <!-- Title -->
+  
+  <meta charset="utf-8">
+  <meta name="applicable-device" content="pc,mobile">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, viewport-fit=cover">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="author" content="flypython">
+  <meta name="designer" content="flypython">
+  <meta name="keywords" content="Python读取PDF文字和表格,FlyPython - 专业的Python学习社区,flypython, 飞蟒，飞蟒Python，Python入门，Python自动化，Python日报">
+  <meta property="og:title" content="Python读取PDF文字和表格 | FlyPython - 专业的Python学习社区">
+  <meta property="og:site_name" content="http://www.flypython.com">
+  
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://www.flypython.com/article/python-oa-04/">
+    <meta property="og:image" content="http://www.flypython.com/images/oa4.jpg">
+    <meta property="og:description" content="Python读取PDF文字和表格--极简Python自动化办公系列">
+    <meta name="description" content="Python读取PDF文字和表格--极简Python自动化办公系列">
+  
+  <meta name="rating" content="general"> 
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" href="/images/favicon.ico">
+  <title>Python读取PDF文字和表格 | FlyPython - 专业的Python学习社区</title>
+  <link rel="stylesheet" href="/css/f25.css">
+  <link rel="stylesheet" href="/css/highlight.css">
+  
+    <link rel="stylesheet" href="/css/gitalk.css">
+  
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-147288599-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-147288599-1');
+</script>
+
+</head>
+</head>
+<body>
+    <header class="wrapper header-wrapper">
+    <div class="container header-nav-wrapper">
+        <div class="logo"><a href="/" title="FlyPython - 专业的Python学习社区"><h1 class="title">FlyPython</h1></a></div>
+        <nav class="nav-wrapper">
+            
+                <a href="https://flypython.com/python" title="飞蟒微课堂">飞蟒微课堂</a>
+            
+                <a href="https://flypython.com/flypython_daily" title="Python日报">Python日报</a>
+            
+                <a href="https://flypython.com/PyCon/" title="PyCon">PyCon</a>
+            
+                <a href="https://github.com/flypythoncom" title="Github">Github</a>
+            
+                <a href="/article/about" title="关于">关于</a>
+            
+        </nav>
+        <span class="btn-menu" id="J_header_menu">
+            <div class="inner">
+                <span class="line line-01"></span>
+                <span class="line line-02"></span>
+                <span class="line line-03"></span>
+            </div>
+        </span>
+        <div class="wrapper mb-nav-wrapper" id="J_header_menu_list">
+            <nav class="wrapper mb-nav-container">
+                
+                    <a href="https://flypython.com/python" title="飞蟒微课堂">飞蟒微课堂</a>
+                
+                    <a href="https://flypython.com/flypython_daily" title="Python日报">Python日报</a>
+                
+                    <a href="https://flypython.com/PyCon/" title="PyCon">PyCon</a>
+                
+                    <a href="https://github.com/flypythoncom" title="Github">Github</a>
+                
+                    <a href="/article/about" title="关于">关于</a>
+                
+            </nav>
+        </div>
+    </div>
+</header>
+    <section class="body-wrapper">
+        <section class="wrapper post-banner">
+    <div class="container post-banner-container">
+        <h2 class="wrapper title">Python读取PDF文字和表格</h2>
+        <div class="wrapper tips">
+            <span>Author：</span><span>flypython</span> | <span>Date: </span><span>2019-01-04</span> | <span>Category：</span><span><a href="/fly/自动化办公/" title="自动化办公">自动化办公</a></span>
+        </div>
+    </div>
+</section>
+<section class="wrapper main-wrapper">
+    <article class="sub-container post-content">
+        <blockquote>
+<p>【极简Python 自动化办公】专栏是介绍如何利用python办公，减少工作负荷。篇幅精炼，内容易懂，无论是否有编程基础，都非常适合。</p>
+</blockquote>
+<p>在日常的工作中，处理PDF是最平常不过的事情了。今天带来极简Python自动化办公系列之使用Python提取Pdf文字和表格，希望能够在PDF处理上帮到你。</p>
+<p>这次我们准备了一个pdf测试文件，内容如下：</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g8e0nlr7gdj30kc0zcjua.jpg" alt></p>
+<p>pdf中包括了2页，有文字，图片和表格，覆盖了大部分pdf的场景。</p>
+<h4 id="pdfplumber介绍"><a href="#pdfplumber介绍" class="headerlink" title="pdfplumber介绍"></a>pdfplumber介绍</h4><p>Pdfplumber是一个可以处理pdf格式信息的库。它可以查找关于每个文本字符、矩阵、和行的详细信息，也可以对表格进行提取并进行可视化调试。</p>
+<p>官方repo:<br>    <code>https://github.com/jsvine/pdfplumber</code></p>
+<p>安装：<br><code>pip install pdfplumber</code></p>
+<h4 id="使用入门"><a href="#使用入门" class="headerlink" title="使用入门"></a>使用入门</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import pdfplumber</span><br><span class="line">	</span><br><span class="line">with pdfplumber.open(&quot;test.pdf&quot;) as pdf:</span><br><span class="line">	first_page = pdf.pages[0] #取第一页</span><br><span class="line">	print(first_page.chars[0])#打印第一页第一个字文字信息</span><br></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&apos;fontname&apos;: &apos;CRSMRF+PingFangTC-Semibold&apos;, &apos;adv&apos;: Decimal(&apos;1.000&apos;), &apos;upright&apos;: 1, &apos;x0&apos;: Decimal(&apos;57.000&apos;), &apos;y0&apos;: Decimal(&apos;751.840&apos;), &apos;x1&apos;: Decimal(&apos;81.000&apos;), &apos;y1&apos;: Decimal(&apos;779.776&apos;), &apos;width&apos;: Decimal(&apos;24.000&apos;), &apos;height&apos;: Decimal(&apos;27.936&apos;), &apos;size&apos;: Decimal(&apos;27.936&apos;), &apos;object_type&apos;: &apos;char&apos;, &apos;page_number&apos;: 1, &apos;text&apos;: &apos;关&apos;, &apos;top&apos;: Decimal(&apos;62.224&apos;), &apos;bottom&apos;: Decimal(&apos;90.160&apos;), &apos;doctop&apos;: Decimal(&apos;62.224&apos;)&#125;</span><br></pre></td></tr></table></figure>
+
+<p>格式化之后：</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g8e0nm8qvij30kq0hi0um.jpg" alt></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	    &quot;fontname&quot;:&quot;CRSMRF+PingFangTC-Semibold&quot;,</span><br><span class="line">	    &quot;adv&quot;:&quot;1.000&quot;,</span><br><span class="line">	    &quot;upright&quot;:1,</span><br><span class="line">	    &quot;x0&quot;:&quot;57.000&quot;,</span><br><span class="line">	    &quot;y0&quot;:&quot;751.840&quot;,</span><br><span class="line">	    &quot;x1&quot;:&quot;81.000&quot;,</span><br><span class="line">	    &quot;y1&quot;:&quot;779.776&quot;,</span><br><span class="line">	    &quot;width&quot;:&quot;24.000&quot;,</span><br><span class="line">	    &quot;height&quot;:&quot;27.936&quot;,</span><br><span class="line">	    &quot;size&quot;:&quot;27.936&quot;,</span><br><span class="line">	    &quot;object_type&quot;:&quot;char&quot;,</span><br><span class="line">	    &quot;page_number&quot;:1,  #页数</span><br><span class="line">	    &quot;text&quot;:&quot;关&quot;,  #第一个文字</span><br><span class="line">	    &quot;top&quot;:&quot;62.224&quot;,</span><br><span class="line">	    &quot;bottom&quot;:&quot;90.160&quot;,</span><br><span class="line">	    &quot;doctop&quot;:&quot;62.224&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h4><ul>
+<li>extract_text() 用来提页面中的文本，将页面的所有字符对象整理为一个字符串</li>
+<li>extract_words() 返回的是所有的单词及其相关信息</li>
+<li>extract_tables() 提取页面的表格</li>
+</ul>
+<h4 id="提取文字"><a href="#提取文字" class="headerlink" title="提取文字"></a>提取文字</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python3</span><br><span class="line"></span><br><span class="line">import pdfplumber</span><br><span class="line"></span><br><span class="line">with pdfplumber.open(&quot;test.pdf&quot;) as pdf:</span><br><span class="line">	first_page = pdf.pages[0]</span><br><span class="line">	text = first_page.extract_text() #提取第一页的所有文字</span><br><span class="line">	print(text)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g8e0nmzq4wj30r007wgms.jpg" alt></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">关于我们</span><br><span class="line">关于FlyPython</span><br><span class="line">FlyPython是提供⼀站式Python编程学习的组织，我们致⼒于为⽤户提供⾼</span><br><span class="line">效，有趣的学习环境，打造专注于Python的中⽂学习社区。</span><br><span class="line">联系我们</span><br><span class="line">客服&amp;合作: 微信号 flypython</span><br><span class="line">微信公众号：</span><br></pre></td></tr></table></figure>
+
+<h4 id="提取表格"><a href="#提取表格" class="headerlink" title="提取表格"></a>提取表格</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python3</span><br><span class="line"></span><br><span class="line">import pdfplumber</span><br><span class="line">import pandas as pd</span><br><span class="line"></span><br><span class="line">with pdfplumber.open(&quot;test.pdf&quot;) as pdf:</span><br><span class="line">    first_page = pdf.pages[0]</span><br><span class="line">    text = first_page.extract_text()</span><br><span class="line">    print(text)</span><br><span class="line"></span><br><span class="line">    second_page = pdf.pages[1] #第二页</span><br><span class="line">    table = second_page.extract_tables()#在第二页提取表格</span><br><span class="line">    for t in table:</span><br><span class="line">        df = pd.DataFrame(t[1:],columns=t[0])</span><br><span class="line">        print(df)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g8e0no9hykj30po0f8wg9.jpg" alt></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">         分类                 书名</span><br><span class="line">0  Python入门  Python编程：从入门到\n实践</span><br><span class="line">1  Python中级          流畅的Python</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
+
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>pdfplumber的接口还是很容易的，如果只是需要提取文字，几行代码就可以提取到。如果是表格并没有提取出来或者错误的提取了非表格的内容，你需要在提取表格时加入<code>table_settings</code>参数来指定表格的设置。</p>
+<p>这次的demo中，图片并没有提取出来，pdf图片的提取会放到下一篇文章，敬请期待。</p>
+<p><em>人生苦短，我用python早下班。如果觉得不错，对你工作中有帮助，可以长按下列二维码关注我们的公众号。</em></p>
+<p>  <img src="https://flypython.com/images/wechat.png" alt="flypython微信公众号"></p>
+
+    </article>
+    <div class="sub-container gitalk-wrapper" id="gitalk-container"></div>
+</section>
+        
+<div class="tips-top-wrapper">
+    <span class="tip-top-container" onclick="scrollToWindowTop()">
+        <span class="l-bar"></span>
+        <span class="r-bar"></span>
+    </span>
+</div>
+<footer class="wrapper footer-wrapper">
+    <div class="container"><span class="copyright">&copy; 2020 FlyPython . All Rights Reserved.</span></div>
+</footer>
+    </section>
+    <script src="/js/f25.js"></script>
+    
+        <script src="/js/gitalk.min.js"></script>
+        
+<script>
+    var gitalkAdmin = 'xxg1413'.split(',');
+    var gitalk = new Gitalk({
+        clientID: 'd0e566bfc45c0b852c6c',
+        clientSecret: '6b69b3a841c85a6223e5a904c47f5e2d84322980',
+        repo: 'gitalk',
+        owner: 'flypythoncom',
+        admin: gitalkAdmin,
+        id: location.pathname.length > 50 ? location.pathname.substr(0,50) : location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+    gitalk.render('gitalk-container');
+</script>
+
+    
+</body>
+</html>

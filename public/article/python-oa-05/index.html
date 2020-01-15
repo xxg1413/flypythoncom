@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <head><meta name="generator" content="Hexo 3.9.0">  
+  <!-- Title -->
+  
+  <meta charset="utf-8">
+  <meta name="applicable-device" content="pc,mobile">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, viewport-fit=cover">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="author" content="flypython">
+  <meta name="designer" content="flypython">
+  <meta name="keywords" content="Python读取PDF图片,FlyPython - 专业的Python学习社区,flypython, 飞蟒，飞蟒Python，Python入门，Python自动化，Python日报">
+  <meta property="og:title" content="Python读取PDF图片 | FlyPython - 专业的Python学习社区">
+  <meta property="og:site_name" content="http://www.flypython.com">
+  
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://www.flypython.com/article/python-oa-05/">
+    <meta property="og:image" content="http://www.flypython.com/images/oa4.jpg">
+    <meta property="og:description" content="Python读取PDF图片--极简Python自动化办公系列">
+    <meta name="description" content="Python读取PDF图片--极简Python自动化办公系列">
+  
+  <meta name="rating" content="general"> 
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" href="/images/favicon.ico">
+  <title>Python读取PDF图片 | FlyPython - 专业的Python学习社区</title>
+  <link rel="stylesheet" href="/css/f25.css">
+  <link rel="stylesheet" href="/css/highlight.css">
+  
+    <link rel="stylesheet" href="/css/gitalk.css">
+  
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-147288599-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-147288599-1');
+</script>
+
+</head>
+</head>
+<body>
+    <header class="wrapper header-wrapper">
+    <div class="container header-nav-wrapper">
+        <div class="logo"><a href="/" title="FlyPython - 专业的Python学习社区"><h1 class="title">FlyPython</h1></a></div>
+        <nav class="nav-wrapper">
+            
+                <a href="https://flypython.com/python" title="飞蟒微课堂">飞蟒微课堂</a>
+            
+                <a href="https://flypython.com/flypython_daily" title="Python日报">Python日报</a>
+            
+                <a href="https://flypython.com/PyCon/" title="PyCon">PyCon</a>
+            
+                <a href="https://github.com/flypythoncom" title="Github">Github</a>
+            
+                <a href="/article/about" title="关于">关于</a>
+            
+        </nav>
+        <span class="btn-menu" id="J_header_menu">
+            <div class="inner">
+                <span class="line line-01"></span>
+                <span class="line line-02"></span>
+                <span class="line line-03"></span>
+            </div>
+        </span>
+        <div class="wrapper mb-nav-wrapper" id="J_header_menu_list">
+            <nav class="wrapper mb-nav-container">
+                
+                    <a href="https://flypython.com/python" title="飞蟒微课堂">飞蟒微课堂</a>
+                
+                    <a href="https://flypython.com/flypython_daily" title="Python日报">Python日报</a>
+                
+                    <a href="https://flypython.com/PyCon/" title="PyCon">PyCon</a>
+                
+                    <a href="https://github.com/flypythoncom" title="Github">Github</a>
+                
+                    <a href="/article/about" title="关于">关于</a>
+                
+            </nav>
+        </div>
+    </div>
+</header>
+    <section class="body-wrapper">
+        <section class="wrapper post-banner">
+    <div class="container post-banner-container">
+        <h2 class="wrapper title">Python读取PDF图片</h2>
+        <div class="wrapper tips">
+            <span>Author：</span><span>flypython</span> | <span>Date: </span><span>2019-01-05</span> | <span>Category：</span><span><a href="/fly/自动化办公/" title="自动化办公">自动化办公</a></span>
+        </div>
+    </div>
+</section>
+<section class="wrapper main-wrapper">
+    <article class="sub-container post-content">
+        <blockquote>
+<p>【极简Python 自动化办公】专栏是介绍如何利用python办公，减少工作负荷。篇幅精炼，内容易懂，无论是否有编程基础，都非常适合。</p>
+</blockquote>
+<p>在上次的文章中，我们从PDF中提取了文字和表格，这次我们需要提取图片。</p>
+<p>还是先来看看我们上次的测试例子</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g8e0nlr7gdj30kc0zcjua.jpg" alt></p>
+<p>这次我们要提取第一页的二维码图片。</p>
+<h4 id="fitz介绍"><a href="#fitz介绍" class="headerlink" title="fitz介绍"></a>fitz介绍</h4><p>pymupdf是mupdf的Python绑定，而今天我们要使用的fitz是pymupdf的子模块。需要的时候，使用pip安装。</p>
+<p><code>pip install pymupdf</code></p>
+<p>导入的时使用<code>import fitz</code>导入模块。</p>
+<p>更多信息可参考pymupdf的文档:<br><code>https://pymupdf.readthedocs.io/en/latest/intro/</code></p>
+<h4 id="提取图片"><a href="#提取图片" class="headerlink" title="提取图片"></a>提取图片</h4><p>提取图片的思路是通过正则表达式找到图片对象，然后保存为图片格式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/env python3</span><br><span class="line"></span><br><span class="line">import fitz  #pip install pymupdf</span><br><span class="line">import re</span><br><span class="line">import os</span><br><span class="line"></span><br><span class="line">def find_imag(path,img_path):</span><br><span class="line"></span><br><span class="line">    checkXO = r&quot;/Type(?= */XObject)&quot;</span><br><span class="line">    checkIM = r&quot;/Subtype(?= */Image)&quot;</span><br><span class="line"></span><br><span class="line">    pdf = fitz.open(path)</span><br><span class="line"></span><br><span class="line">    img_count = 0</span><br><span class="line">    len_XREF = pdf._getXrefLength()</span><br><span class="line"></span><br><span class="line">    print(&quot;文件名:&#123;&#125;, 页数: &#123;&#125;, 对象: &#123;&#125;&quot;.format(path, len(pdf), len_XREF - 1))</span><br><span class="line"></span><br><span class="line">    for i in range(1, len_XREF):</span><br><span class="line">        text = pdf._getXrefString(i)</span><br><span class="line">        isXObject = re.search(checkXO, text)</span><br><span class="line"></span><br><span class="line">        # 使用正则表达式查看是否是图片</span><br><span class="line">        isImage = re.search(checkIM, text)</span><br><span class="line"></span><br><span class="line">        # 如果不是对象也不是图片，则continue</span><br><span class="line">        if not isXObject or not isImage:</span><br><span class="line">            continue</span><br><span class="line">        img_count += 1</span><br><span class="line">        # 根据索引生成图像</span><br><span class="line">        pix = fitz.Pixmap(pdf, i)</span><br><span class="line">  </span><br><span class="line">        new_name = path.replace(&apos;\\&apos;, &apos;_&apos;) + &quot;_img&#123;&#125;.png&quot;.format(img_count)</span><br><span class="line">        new_name = new_name.replace(&apos;:&apos;, &apos;&apos;)</span><br><span class="line"></span><br><span class="line">        # 如果pix.n&lt;5,可以直接存为PNG</span><br><span class="line">        if pix.n &lt; 5:</span><br><span class="line">            pix.writePNG(os.path.join(img_path, new_name))</span><br><span class="line">     </span><br><span class="line">        else:</span><br><span class="line">            pix0 = fitz.Pixmap(fitz.csRGB, pix)</span><br><span class="line">            pix0.writePNG(os.path.join(img_path, new_name))</span><br><span class="line">            pix0 = None</span><br><span class="line">       </span><br><span class="line">        pix = None</span><br><span class="line">     </span><br><span class="line">        print(&quot;提取了&#123;&#125;张图片&quot;.format(img_count))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__==&apos;__main__&apos;:</span><br><span class="line">    pdf_path = r&apos;test.pdf&apos;</span><br><span class="line">    img_path = r&apos;img&apos;</span><br><span class="line">    m = find_imag(pdf_path, img_path)</span><br></pre></td></tr></table></figure>
+
+<p>运行程序结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[pdf] python3 pdf_img.py</span><br><span class="line">文件名:test.pdf, 页数: 2, 对象: 115</span><br><span class="line">提取了1张图片</span><br></pre></td></tr></table></figure>
+
+<p>在img目录中，已经存在了我们需要的文件</p>
+<p><img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g8osipfp3uj30uu0jqgrw.jpg" alt></p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>pymupdf的使用，今天就简单介绍到这里。更多的功能请参考pymupdf文档。</p>
+<p>下一篇，我们将带来pdf转换为图片的讨论。</p>
+<p><em>人生苦短，我用python早下班。如果觉得不错，对你工作中有帮助，可以长按下列二维码关注我们的公众号。</em></p>
+<p>  <img src="https://tva1.sinaimg.cn/large/006y8mN6ly1g8pj2981c1j3076076mxn.jpg" alt="flypython微信公众号"></p>
+
+    </article>
+    <div class="sub-container gitalk-wrapper" id="gitalk-container"></div>
+</section>
+        
+<div class="tips-top-wrapper">
+    <span class="tip-top-container" onclick="scrollToWindowTop()">
+        <span class="l-bar"></span>
+        <span class="r-bar"></span>
+    </span>
+</div>
+<footer class="wrapper footer-wrapper">
+    <div class="container"><span class="copyright">&copy; 2020 FlyPython . All Rights Reserved.</span></div>
+</footer>
+    </section>
+    <script src="/js/f25.js"></script>
+    
+        <script src="/js/gitalk.min.js"></script>
+        
+<script>
+    var gitalkAdmin = 'xxg1413'.split(',');
+    var gitalk = new Gitalk({
+        clientID: 'd0e566bfc45c0b852c6c',
+        clientSecret: '6b69b3a841c85a6223e5a904c47f5e2d84322980',
+        repo: 'gitalk',
+        owner: 'flypythoncom',
+        admin: gitalkAdmin,
+        id: location.pathname.length > 50 ? location.pathname.substr(0,50) : location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+    gitalk.render('gitalk-container');
+</script>
+
+    
+</body>
+</html>
